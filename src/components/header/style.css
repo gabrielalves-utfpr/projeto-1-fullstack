@@ -1,0 +1,54 @@
+.top-bar{
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.logo{
+    display: flex;
+}
+.logo:hover #globe{
+    filter: 
+    drop-shadow(2px 2px 5px #105bd8)
+    drop-shadow(4px 4px 10px #105bd8);
+    transition: 0.5s;
+    cursor: crosshair;
+}
+.logo:hover #nasa{
+    text-shadow: 
+        2px 2px 5px #105bd8,
+        4px 4px 10px #105bd8,
+        6px 6px 15px #105bd8,
+        8px 8px 20px #105bd8;
+    transition: 0.5s;
+    cursor: crosshair;
+}
+#globe{
+    margin-right: 10px;
+    width: 48px;
+}
+.menu{
+    display: flex;
+    width: auto;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.menu-opt{
+    color: rgba(255, 255, 255, 0.747)
+}
+
+.menu-opt:hover, .menu-opt.select{
+    text-shadow: 
+        -2px -2px 5px #1059d877,
+        2px 2px 5px #1059d877;
+    color: white;
+    transition: 0.4s;
+    font-weight: 700;
+    cursor: pointer;
+}
