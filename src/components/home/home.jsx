@@ -4,7 +4,7 @@ import searchAPI from '../../nasaApi/searchApi.js';
 import Search from './search.jsx'
 import Footer from '../footer/foot.jsx'
 
-const Grid = React.lazy(() => import('../results/gridPhoto.jsx'));
+const Grid = React.lazy(() => delayForDemo(import('../results/gridPhoto.jsx')));
 
 export default function Home(){
     const resultAreaRef = React.useRef(null);
@@ -50,4 +50,9 @@ export default function Home(){
             <Footer/>
         </div>
     )
+}
+function delayForDemo(promise) {
+  return new Promise(resolve => {
+    setTimeout(resolve, 2000);
+  }).then(() => promise);
 }

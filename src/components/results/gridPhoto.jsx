@@ -2,9 +2,10 @@ import './style.css'
 //import Item from './item.jsx'
 import React, { Suspense } from 'react';
 
-const Item = React.lazy(() => import('./item.jsx'));
+const Item = React.lazy(() => delayForDemo(import('./item.jsx')));
 
 export default function Grid ({ data, page, onForwardClick, onPreviousClick }) {
+    console.log(data.collection.items)
     return (
         <div>
             <div className = 'text-container' id = "intro">
@@ -31,4 +32,9 @@ export default function Grid ({ data, page, onForwardClick, onPreviousClick }) {
             <p className='page'>Page: <span className='page-number'>{page}</span></p>
         </div>
     )
+  }
+  function delayForDemo(promise) {
+    return new Promise(resolve => {
+      setTimeout(resolve, 2000);
+    }).then(() => promise);
   }
