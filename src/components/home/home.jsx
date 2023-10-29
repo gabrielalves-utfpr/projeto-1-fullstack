@@ -20,62 +20,42 @@ export default function Home(){
             setError('ESPAÇO DE PESQUISA EM BRANCO')
         }else{
             setSearchText(text);
-        }/*
-        try {
-            const response = await searchAPI.search(text, page);
-            setData(response);
-            if(response != null){ 
-                resultAreaRef.current.scrollIntoView({ behavior: 'smooth' }) 
-                setError(null)
-            } else setError('SEM RESPOSTA DO SERVIDOR');;
-        } catch (er) {
-            setError(er);
         }
-        */
     }
 
     const handleForwardClick = async () => {
         const newPage = page+1
         setPage(newPage);
-        /*
-        try {
-            const response = await searchAPI.search(searchText, newPage);
-            setData(response);
-        } catch (er) {
-            setError(er);
-        }
-        */
+        
     }
     const handlePreviousClick = async () => {
         if (page > 0) {
             const newPage = page-1
             setPage(newPage);
             
-            /*try {
-                const response = await searchAPI.search(searchText, newPage);
-                setData(response);
-            } catch (er) {
-                setError(er);
-            }
-            */
+            
         }
     }
     useEffect(()=>{
-        (async() => {try {
-            const response = await searchAPI.search(searchText, page);
-            setData(response);
-            if(response != null){ 
-                if(response.collection.items.length === 0){
-                    homeAreaRef.current.scrollIntoView({ behavior: 'smooth' })
-                    setError('NÃO FOI ENCONTRADO NADA')
-                }else{
-                    resultAreaRef.current.scrollIntoView({ behavior: 'smooth' })
-                    setError(null)
+        (async() => {
+            if(searchText !== ''){
+                try {
+                    const response = await searchAPI.search(searchText, page);
+                    setData(response);
+                    if(response != null){ 
+                        if(response.collection.items.length === 0){
+                            homeAreaRef.current.scrollIntoView({ behavior: 'smooth' })
+                            setError('NÃO FOI ENCONTRADO NADA')
+                        }else{
+                            resultAreaRef.current.scrollIntoView({ behavior: 'smooth' })
+                            setError(null)
+                        }
+                    } else setError('SEM RESPOSTA DO SERVIDOR');
+                } catch (er) {
+                    setError(er);
                 }
-            } else setError('SEM RESPOSTA DO SERVIDOR');;
-        } catch (er) {
-            setError(er);
-        }})();
+    }
+    })();
     }, [page, searchText])
     return(
         <div className='home'>
