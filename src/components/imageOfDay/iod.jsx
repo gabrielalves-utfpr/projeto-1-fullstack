@@ -1,23 +1,28 @@
+import React, { useEffect, useState } from 'react';
 import'./style.css'
+import apodAPI from '../../nasaApi/apodAPI.js'
 
 export default function Iod(){
+    const [resp, setResp] = useState(null);
+
+    useEffect(() => {
+        apodAPI.get().then(data => setResp(data));
+    }, []);
+
+    if (!resp) {
+        return <div>Loading...</div>;
+    }
     return(
         <div class = 'image-container'>
-            
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>   
             <div id="news">
                 
                 <div className="image-of-the-day">
-                    <div className="image-box">
+                    <div className="image-box" style={{ backgroundImage: "url("+resp.url+")" }}>
                         <h4 className="tag">IMAGE OF THE DAY</h4>
                         <div className="overlay-text">
-                            <h1>Space Station Flight Over the Southern Tip of Italy</h1>
+                            <h1>{resp.title}</h1>
                             <p>
-                                The southern tip of Italy is visible in this image taken by the
-                                Expedition 49 crew aboard the International Space Station on Sept.
-                                17, 2016. The brightly lit city of Naples can be seen in the bottom
-                                section of the image A Russian Soyuz spacecraft can be seen in the
-                                foreground,
+                                {resp.explanation}
                             </p>
                         </div>
                     </div>
