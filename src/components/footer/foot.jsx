@@ -1,6 +1,6 @@
 import './style.css'
 
-export default function footer () { 
+export default function Footer () { 
   return (
     <div id="foot">
       <div className="foot-cont">

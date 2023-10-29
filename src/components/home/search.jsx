@@ -1,8 +1,8 @@
-export default function search () { 
+export default function Search () { 
   return (
     <div className="search">
       <h1 className="welcome">
-        Welcome home,<span className="nasa-font"> Earthling</span>
+        Type to search midia in<span className="nasa-font"> NASA</span>
       </h1>
       <input
         id="searchbar"
@@ -11,5 +11,6 @@ export default function search () {
         placeholder="Search..."
         className="input"
       />
+      <a href="/" id="search-bt"><img id="search-ico" src="/public/outline_search_white_24dp.png" alt="" /></a>
     </div>
   )}

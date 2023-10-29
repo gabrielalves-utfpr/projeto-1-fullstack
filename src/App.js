@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/header/header.jsx'
 
+import Home from './components/home/home.jsx'
+import Planets from './components/planets/planets.jsx'
+import Iod from './components/imageOfDay/iod.jsx'
+import {
+  Routes,
+  Route,
+  HashRouter
+} from "react-router-dom";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+        <Header/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/image-of-day" element={<Iod/>}/>
+          <Route path="/planets" element={<Planets/>}/>
+        </Routes>
+    </HashRouter>
+    
   );
 }
 
