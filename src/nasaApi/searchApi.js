@@ -9,7 +9,7 @@ let searchAPI = {
                 'Content-type': 'application/json',
             },
         }
-        const resposta = await fetch('https://images-api.nasa.gov/search?q='+text+'&page='+page+'&page_size=8', dataGET)
+        const resposta = await fetch('https://images-api.nasa.gov/search?q='+text+'&page='+page+'&page_size=4', dataGET)
         return await resposta.json()
     },
 }

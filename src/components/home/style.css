@@ -1,4 +1,19 @@
 
+.home{
+    
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    margin: 0px;
+}
+
+.content{
+    margin-top: 35px;
+    text-align: center;
+    padding-left: 15vw;
+    padding-right: 15vw;
+}
+
 .image-container {
     /*
     background-image: url('assets/image1-5.png');
