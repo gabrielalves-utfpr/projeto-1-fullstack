@@ -1,10 +1,11 @@
 
 
 export default function Item ({ img, title, type }) { 
+  console.log(img)
     return (
         <div
         className="card card-mission"
-        style={{ backgroundImage: 'url('+img+')' }}
+        style={{ backgroundImage: `url("${img}")` }}
         key={img}
         >
         <div className="card-text">

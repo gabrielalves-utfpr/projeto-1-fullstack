@@ -2,7 +2,7 @@ import './style.css'
 import {
   Link
 } from "react-router-dom";
-
+import logo from '../../globe_with_satellites.svg'
 
 export default function Header () { 
   return (
@@ -11,7 +11,7 @@ export default function Header () {
           <img
             id="globe"
             htmlFor="nasa"
-            src="/public/globe_with_satellites.svg"
+            src={logo}
             alt=""
           />
           <h1 className="nasa-font" id="nasa" htmlFor="globe">
