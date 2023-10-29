@@ -1,6 +1,7 @@
 import './style.css'
 //import Item from './item.jsx'
 import React, { Suspense } from 'react';
+import load from '../../b6e0b072897469.5bf6e79950d23.gif'
 
 const Item = React.lazy(() => delayForDemo(import('./item.jsx')));
 
@@ -18,7 +19,7 @@ export default function Grid ({ data, page, onForwardClick, onPreviousClick }) {
                 {data && data.collection && data.collection.items && data.collection.items.map((item, index) => {
                     const img = item.links && item.links[0] ? item.links[0].href : 'default_image_url';
                     return (
-                        <Suspense fallback={<div>Loading image...</div>} key={index}>
+                        <Suspense fallback={<img className='loading' src={load} alt="Loading..." />} key={index}>
                             <Item 
                             img={img}
                             title={item.data[0].title}

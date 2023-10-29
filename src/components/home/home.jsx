@@ -1,8 +1,9 @@
 import './style.css'
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import searchAPI from '../../nasaApi/searchApi.js';
 import Search from './search.jsx'
 import Footer from '../footer/foot.jsx'
+import load from '../../b6e0b072897469.5bf6e79950d23.gif'
 
 const Grid = React.lazy(() => delayForDemo(import('../results/gridPhoto.jsx')));
 
@@ -15,6 +16,7 @@ export default function Home(){
 
     const handleSearch = async (text) => {
         setSearchText(text);
+        /*
         try {
             const response = await searchAPI.search(text, page);
             setData(response);
@@ -25,30 +27,47 @@ export default function Home(){
         } catch (er) {
             setError(er);
         }
+        */
     }
 
     const handleForwardClick = async () => {
         const newPage = page+1
         setPage(newPage);
+        /*
         try {
             const response = await searchAPI.search(searchText, newPage);
             setData(response);
         } catch (er) {
             setError(er);
         }
+        */
     }
     const handlePreviousClick = async () => {
         if (page > 0) {
             const newPage = page-1
             setPage(newPage);
-            try {
+            
+            /*try {
                 const response = await searchAPI.search(searchText, newPage);
                 setData(response);
             } catch (er) {
                 setError(er);
             }
+            */
         }
     }
+    useEffect(()=>{
+        (async() => {try {
+            const response = await searchAPI.search(searchText, page);
+            setData(response);
+            if(response != null){ 
+                resultAreaRef.current.scrollIntoView({ behavior: 'smooth' }) 
+                setError(null)
+            } else setError('SEM RESPOSTA DO SERVIDOR');;
+        } catch (er) {
+            setError(er);
+        }})();
+    }, [page, searchText])
     return(
         <div className='home'>
             <div className = 'image-container'>
@@ -60,7 +79,7 @@ export default function Home(){
                 </div>
             </div>
             <div className = "content" ref={resultAreaRef}>
-                <Suspense fallback={<p>Loading...</p>}>
+                <Suspense fallback={<img className='loading' src={load} alt="Loading..." />}>
                     {data && <Grid data={data} page={page} onForwardClick={handleForwardClick} onPreviousClick={handlePreviousClick}/>}
                 </Suspense>
             </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import'./style.css'
 import apodAPI from '../../nasaApi/apodAPI.js'
 import Footer from '../footer/foot.jsx'
+import load from '../../b6e0b072897469.5bf6e79950d23.gif'
 
 export default function Iod(){
     const [resp, setResp] = useState(null);
@@ -11,7 +12,7 @@ export default function Iod(){
     }, []);
 
     if (!resp) {
-        return <img className='loading' src="/public/b6e0b072897469.5bf6e79950d23.gif" alt="Loading..." />;
+        return <img className='loading' src={load} alt="Loading..." />;
     }
     return(
         <div className='iod'>
