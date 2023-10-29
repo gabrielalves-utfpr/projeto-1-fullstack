@@ -10,13 +10,17 @@ const Grid = React.lazy(() => delayForDemo(import('../results/gridPhoto.jsx')));
 export default function Home(){
     const [error, setError] = useState(null);
     const resultAreaRef = React.useRef(null);
+    const homeAreaRef = React.useRef(null);
     const [data, setData] = useState(null);
     const [page, setPage] = useState(1);
     const [searchText, setSearchText] = useState('');
 
     const handleSearch = async (text) => {
-        setSearchText(text);
-        /*
+        if(text == null || text === ''){
+            setError('ESPAÇO DE PESQUISA EM BRANCO')
+        }else{
+            setSearchText(text);
+        }/*
         try {
             const response = await searchAPI.search(text, page);
             setData(response);
@@ -61,8 +65,13 @@ export default function Home(){
             const response = await searchAPI.search(searchText, page);
             setData(response);
             if(response != null){ 
-                resultAreaRef.current.scrollIntoView({ behavior: 'smooth' }) 
-                setError(null)
+                if(response.collection.items.length === 0){
+                    homeAreaRef.current.scrollIntoView({ behavior: 'smooth' })
+                    setError('NÃO FOI ENCONTRADO NADA')
+                }else{
+                    resultAreaRef.current.scrollIntoView({ behavior: 'smooth' })
+                    setError(null)
+                }
             } else setError('SEM RESPOSTA DO SERVIDOR');;
         } catch (er) {
             setError(er);
@@ -70,7 +79,7 @@ export default function Home(){
     }, [page, searchText])
     return(
         <div className='home'>
-            <div className = 'image-container'>
+            <div className = 'image-container' ref={homeAreaRef}>
                 <Search onSearch={handleSearch}/>
                 {error && <div className="error">ERROR: {error}</div>}
                 <div className="scrolldown">
