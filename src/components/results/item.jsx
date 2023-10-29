@@ -1,8 +1,11 @@
+
+
 export default function Item ({ img, title, type }) { 
     return (
         <div
         className="card card-mission"
         style={{ backgroundImage: 'url('+img+')' }}
+        key={img}
         >
         <div className="card-text">
           <h3>{title}</h3>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import'./style.css'
 import apodAPI from '../../nasaApi/apodAPI.js'
+import Footer from '../footer/foot.jsx'
 
 export default function Iod(){
     const [resp, setResp] = useState(null);
@@ -10,24 +11,27 @@ export default function Iod(){
     }, []);
 
     if (!resp) {
-        return <div>Loading...</div>;
+        return <img className='loading' src="/public/b6e0b072897469.5bf6e79950d23.gif" alt="Loading..." />;
     }
     return(
-        <div class = 'image-container'>
-            <div id="news">
-                
-                <div className="image-of-the-day">
-                    <div className="image-box" style={{ backgroundImage: "url("+resp.url+")" }}>
-                        <h4 className="tag">IMAGE OF THE DAY</h4>
-                        <div className="overlay-text">
-                            <h1>{resp.title}</h1>
-                            <p>
-                                {resp.explanation}
-                            </p>
+        <div className='iod'>
+            <div className = 'image-container'>
+                <div id="news">
+                    
+                    <div className="image-of-the-day">
+                        <div className="image-box" style={{ backgroundImage: "url("+resp.url+")" }}>
+                            <h4 className="tag">IMAGE OF THE DAY</h4>
+                            <div className="overlay-text">
+                                <h1>{resp.title}</h1>
+                                <p>
+                                    {resp.explanation}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+                <Footer/>
         </div>
     )
 }

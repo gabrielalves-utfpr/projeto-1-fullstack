@@ -1,23 +1,34 @@
 import './style.css'
-import Item from './item.jsx'
+//import Item from './item.jsx'
+import React, { Suspense } from 'react';
 
-export default function Grid ({ data }) { 
+const Item = React.lazy(() => import('./item.jsx'));
+
+export default function Grid ({ data, page, onForwardClick, onPreviousClick }) {
     return (
         <div>
-            
-            <div class = 'text-container' id = "intro">
-                    <h1 class = "title">Resultado</h1>
+            <div className = 'text-container' id = "intro">
+                    <h1 className = "title">Resultado</h1>
                     
                 </div>
             <div className="row" id="row-missions">
-                {data.collection.items.map((item) => (
-                    <Item 
-                    img={item.links[0].href}
-                    title={item.data[0].title}
-                    type={item.data[0].media_type}
-                    />
-                ))}
+                
+                {page > 1 && <p className="arrow" id="previus-arrow" onClick={onPreviousClick}>←</p>}
+                {data && data.collection && data.collection.items && data.collection.items.map((item, index) => {
+                    const img = item.links && item.links[0] ? item.links[0].href : 'default_image_url';
+                    return (
+                        <Suspense fallback={<div>Loading image...</div>} key={index}>
+                            <Item 
+                            img={img}
+                            title={item.data[0].title}
+                            type={item.data[0].media_type}
+                            />
+                        </Suspense>
+                    );
+                })}
+                 {data.collection.items.length >= 4 && <p className="arrow" id="forward-arrow" onClick={onForwardClick}>→</p>}
             </div>
+            <p className='page'>Page: <span className='page-number'>{page}</span></p>
         </div>
     )
   }

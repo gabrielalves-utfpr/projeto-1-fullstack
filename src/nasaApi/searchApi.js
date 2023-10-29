@@ -1,7 +1,7 @@
 let searchAPI = {
     search: async function(text, page){
         if(!page){
-            page = 1
+            page = 0
         }
         const dataGET = {
             method: 'GET',
