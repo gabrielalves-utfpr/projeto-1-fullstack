@@ -1,0 +1,13 @@
+.planets{
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    margin: 0px;
+}
+.sphere-opt{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: solid 5px rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 15px;
+}

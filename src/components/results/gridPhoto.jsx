@@ -1,7 +1,7 @@
 import './style.css'
 //import Item from './item.jsx'
 import React, { Suspense } from 'react';
-import load from '../../b6e0b072897469.5bf6e79950d23.gif'
+import load from '../../assets/b6e0b072897469.5bf6e79950d23.gif'
 
 const Item = React.lazy(() => delayForDemo(import('./item.jsx')));
 

@@ -2,7 +2,7 @@ import './style.css'
 import {
   Link
 } from "react-router-dom";
-import logo from '../../globe_with_satellites.svg'
+import logo from '../../assets/globe_with_satellites.svg'
 
 export default function Header () { 
   return (

@@ -3,7 +3,7 @@ import React, { useState, Suspense, useEffect } from 'react';
 import searchAPI from '../../nasaApi/searchApi.js';
 import Search from './search.jsx'
 import Footer from '../footer/foot.jsx'
-import load from '../../b6e0b072897469.5bf6e79950d23.gif'
+import load from '../../assets/b6e0b072897469.5bf6e79950d23.gif'
 
 const Grid = React.lazy(() => delayForDemo(import('../results/gridPhoto.jsx')));
 

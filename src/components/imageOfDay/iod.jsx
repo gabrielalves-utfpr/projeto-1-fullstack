@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import'./style.css'
 import apodAPI from '../../nasaApi/apodAPI.js'
 import Footer from '../footer/foot.jsx'
-import load from '../../b6e0b072897469.5bf6e79950d23.gif'
+import load from '../../assets/b6e0b072897469.5bf6e79950d23.gif'
 
 export default function Iod(){
     const [resp, setResp] = useState(null);
